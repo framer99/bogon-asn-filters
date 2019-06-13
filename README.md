@@ -161,14 +161,18 @@ Cisco IOS & IOS XE:
     !   65550 - 65551
     ip as-path access-list 99 permit _(6449[6-9])_|_(6450[0-9])_|_(6451[0-1])_|_(6553[6-9])_|_(6554[0-9])_|_(6555[0-1])_
     !
-    ! Private Use - RFC6996 (includes 65535 for RFC7300)
+    ! Private Use - RFC6996
     !   64512 - 64519 or,
     !   64520 - 64599 or,
     !   64600 - 64999 or,
     !   65000 - 65499 or,
     !   65500 - 65529 or,
-    !   65530 - 65535
-    ip as-path access-list 99 permit _6(4(5(1[2-9]|[2-9][0-9])|[6-9][0-9][0-9])|5([0-4][0-9][0-9]|5([0-2][0-9]|3[0-5])))_
+    !   65530 - 65534
+    ip as-path access-list 99 permit _6(4(5(1[2-9]|[2-9][0-9])|[6-9][0-9][0-9])|5([0-4][0-9][0-9]|5([0-2][0-9]|3[0-4])))_
+    !
+    ! Last ASN (2-Byte) - RFC7300
+    !   65535
+    ip as-path access-list 99 permit _65535_
     !
     ! Reserved - IANA
     !   65552 - 65559 or,
@@ -202,11 +206,15 @@ Cisco IOS & IOS XE:
     !   4294960000 - 4294966999
     ip as-path access-list 99 permit _(42949[0-5][0-9][0-9][0-9][0-9])_|_(429496[0-6][0-9][0-9][0-9])_
     !
-    ! Private Use - RFC6996 (does not include 42949667295 for RFC7300 as done above)
+    ! Private Use - RFC6996
     !   4294967000 - 4294967199 or,
     !   4294967200 - 4294967289 or,
     !   4294967290 - 4294967294
     ip as-path access-list 99 permit _(4294967[0-1][0-9][0-9])_|_(42949672[0-8][0-9])_|_(429496729[0-4])_
+    !
+    ! Last ASN (4-Byte) - RFC7300
+    !   4294967295
+    ip as-path access-list 99 permit _4294967295_
    
     route-map ebgp-in deny 1
       match as-path 99
